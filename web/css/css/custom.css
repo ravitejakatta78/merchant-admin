@@ -1,0 +1,118 @@
+/* your styles go here */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #796AEE;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+td.icons a{border:1px solid #796aee;color:#796aee;border-radius:4px;padding:4px 5px;margin-bottom: 5px;width: 25px;height: 25px;text-align: center;}
+td.icons a:hover{background:#796aee;color:#fff !important;cursor:pointer;}
+.table td{padding:5px 15px !important;} 
+.table-striped tbody tr:nth-of-type(2n+1), .table-hover tbody tr:hover{background-color: rgba(121, 106, 238, 0.13) !important;}
+.table-bordered td, .table-bordered th, .table-bordered{border:1px solid #eee !important;}
+.btn-add{border:1px solid #796AEE;color:#796AEE;}
+.btn-add:hover{background:#796AEE;color:#fff !important;}
+.tab-title{padding:1rem 0px;}
+.table tbody tr td{vertical-align:middle;}
+.help-block-error{color:red;}
+.modal-body{max-height:500px;overflow-y:auto;}
+.select2 , .select2 .selection{width:100% !important;}
+.select2-container .select2-selection--single{height:35px !important;}
+.select2-container--default .select2-selection--single .select2-selection__rendered{line-height:32px !important;}
+.select2-container--default .select2-selection--single .select2-selection__arrow{height:32px;}
+.select2-container--default .select2-selection--single{border:1px solid #dee2e6;}
+.border-red{border:1px solid red;padding:2px;border-radius:4px;cursor:pointer;}
+.border-red:hover{background:red;color:#fff;}
+
+.form-inline label{margin-top: -15px;margin-right: 10px;}
+.btn-search{margin-top: -15px;}
+.input-group-text{color: #fff !important;background: #796aee !important;}
+.scroller{max-height: 600px;overflow-y: scroll;scrollbar-width: thin;}
+.dropdown-item{padding:5px 10px !important;}
+.dropdown-item:focus, .dropdown-item:hover{color:#fff !important;background:#796AEE !important;}
+.dropdown-menu{width:100%;}
+section.dashboard-counts .icon, .statistic .icon {
+    padding-top: 11px;
+}
+.dropify-wrapper .dropify-preview .dropify-infos, .dropify-wrapper, .dropify-wrapper .dropify-preview{background:none !important;border:none;}
+.dropify-wrapper .dropify-clear{border: 2px solid #796AEE !important;color: #796AEE !important;}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p{color: #796AEE !important;}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p{line-height:50px !important;}
+.dropify-wrapper{border:none !important;}
+.dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-infos-message::befor{background: #796AEE !important;}
+.tax{width:100%;height:100px;padding:10px;border-radius:50%;box-shadow:1px 3px 2px 2px #ccc;border:1px solid #ccc;background:#ccc;color:#000;font-size:18px;font-weight:bold;margin-bottom:10px;display:table;text-align:center;}
+.tax >a{display:table-cell;vertical-align:middle;mousepointer:cursor;}
+.tax.click{background:#796AEE;border:1px solid #796AEE;box-shadow:1px 3px 2px 2px #89879b;color:#fff;}
+.typeahead.dropdown-menu li a{padding: 5px 10px !important;width:100%;text-decoration:none;}
+.typeahead.dropdown-menu li a:hover{color: #fff !important;background: #796AEE !important;text-decoration:none;}
+.swal2-popup .select2{display:none;}
+.input-group-prepend {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    height: 100%;
+    padding-right: 35px;
+}
+.gj-datepicker input {
+    padding-left: 50px;
+}
+
+
+.loading{position: absolute;z-index: 9999;width: 100%;background: #6c6c6c47;height: 100%;text-align: center;padding-top: 20%;overflow-y:hidden;}
+.loading >img{border-radius: 16%;height: 150px;width: 150px;}
+.page{overflow-x: initial !important;}

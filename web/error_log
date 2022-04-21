@@ -1,0 +1,194 @@
+[19-Feb-2022 10:52:59 UTC] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home1/superqcp/public_html/dev/master-admin/controllers/AdminController.php on line 1283. in /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/base/ErrorHandler.php(123): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home1/superqcp/public_html/dev/master-admin/controllers/AdminController.php on line 1283. in /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home1/superqcp/public_html/dev/master-admin/web/index.php(12): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTENT_LENGTH' => '13',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTEXT_DOCUMENT_ROOT' => '/home1/superqcp/public_html',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home1/superqcp/public_html',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => '_csrf=e2823a6e37f77fa63b4e422b59ca0b41205d744b450cbade1e81a2a269ccaf9ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22xDbFl8cYUJcd1mfI2nuFepsnZ0evM64U%22%3B%7D; advanced-frontend=c154d0c8b6df7465a71623b24742da2f; _identity=cecb2221733b59be12c019cea8ce74700cd1cbbcd74dd165f520d1a5240c21cca%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A16%3A%22%5B1%2Cnull%2C2592000%5D%22%3B%7D',
+    'HTTP_HOST' => 'superpilot.in',
+    'HTTP_ORIGIN' => 'http://superpilot.in',
+    'HTTP_REFERER' => 'http://superpilot.in/dev/master-admin/web/admin/merchants',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
+    'PATH' => '/bin:/usr/bin',
+    'PHP_INI_SCAN_DIR' => '/opt/cpanel/ea-php73/root/etc:/opt/cpanel/ea-php73/root/etc/php.d:.',
+    'QUERY_STRING' => '',
+    'REDIRECT_SCRIPT_URI' => 'http://superpilot.in/dev/master-admin/web/admin/merchant-info',
+    'REDIRECT_SCRIPT_URL' => '/dev/master-admin/web/admin/merchant-info',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'YhDMC2C7MycFxSTJQnwxzgAAALE',
+    'REDIRECT_URL' => '/dev/master-admin/web/admin/merchant-info',
+    'REMOTE_ADDR' => '183.83.169.156',
+    'REMOTE_PORT' => '23634',
+    'REQUEST_METHOD' => 'POST',
+    'REQUEST_SCHEME' => 'http',
+    'REQUEST_URI' => '/dev/master-admin/web/admin/merchant-info',
+    'SCRIPT_FILENAME' => '/home1/superqcp/public_html/dev/master-admin/web/index.php',
+    'SCRIPT_NAME' => '/dev/master-admin/web/index.php',
+    'SCRIPT_URI' => 'http://superpilot.in/dev/master-admin/web/admin/merchant-info',
+    'SCRIPT_URL' => '/dev/master-admin/web/admin/merchant-info',
+    'SERVER_ADDR' => '116.206.105.109',
+    'SERVER_ADMIN' => 'webmaster@superpilot.in',
+    'SERVER_NAME' => 'superpilot.in',
+    'SERVER_PORT' => '80',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'TZ' => 'UTC',
+    'UNIQUE_ID' => 'YhDMC2C7MycFxSTJQnwxzgAAALE',
+    'PHP_SELF' => '/dev/master-admin/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1645267979.63346004486083984375,
+    'REQUEST_TIME' => 1645267979,
+    'argv' => [],
+    'argc' => 0,
+]
+[19-Feb-2022 11:23:37 UTC] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home1/superqcp/public_html/dev/master-admin/controllers/AdminController.php on line 1285. in /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/base/ErrorHandler.php(123): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home1/superqcp/public_html/dev/master-admin/controllers/AdminController.php on line 1285. in /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home1/superqcp/public_html/dev/master-admin/web/index.php(12): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home1/superqcp/public_html',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home1/superqcp/public_html',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => '_csrf=e2823a6e37f77fa63b4e422b59ca0b41205d744b450cbade1e81a2a269ccaf9ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22xDbFl8cYUJcd1mfI2nuFepsnZ0evM64U%22%3B%7D; advanced-frontend=c154d0c8b6df7465a71623b24742da2f; _identity=cecb2221733b59be12c019cea8ce74700cd1cbbcd74dd165f520d1a5240c21cca%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A16%3A%22%5B1%2Cnull%2C2592000%5D%22%3B%7D',
+    'HTTP_HOST' => 'superpilot.in',
+    'HTTP_REFERER' => 'http://superpilot.in/dev/master-admin/web/admin/merchant-info',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
+    'PATH' => '/bin:/usr/bin',
+    'PHP_INI_SCAN_DIR' => '/opt/cpanel/ea-php73/root/etc:/opt/cpanel/ea-php73/root/etc/php.d:.',
+    'QUERY_STRING' => 'merchantId=41',
+    'REDIRECT_QUERY_STRING' => 'merchantId=41',
+    'REDIRECT_SCRIPT_URI' => 'http://superpilot.in/dev/master-admin/web/admin/merchant-info',
+    'REDIRECT_SCRIPT_URL' => '/dev/master-admin/web/admin/merchant-info',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'YhDTOUUPLQdm8kJeg0MUMwAAAd0',
+    'REDIRECT_URL' => '/dev/master-admin/web/admin/merchant-info',
+    'REMOTE_ADDR' => '183.83.169.156',
+    'REMOTE_PORT' => '23427',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'http',
+    'REQUEST_URI' => '/dev/master-admin/web/admin/merchant-info?merchantId=41',
+    'SCRIPT_FILENAME' => '/home1/superqcp/public_html/dev/master-admin/web/index.php',
+    'SCRIPT_NAME' => '/dev/master-admin/web/index.php',
+    'SCRIPT_URI' => 'http://superpilot.in/dev/master-admin/web/admin/merchant-info',
+    'SCRIPT_URL' => '/dev/master-admin/web/admin/merchant-info',
+    'SERVER_ADDR' => '116.206.105.109',
+    'SERVER_ADMIN' => 'webmaster@superpilot.in',
+    'SERVER_NAME' => 'superpilot.in',
+    'SERVER_PORT' => '80',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'TZ' => 'UTC',
+    'UNIQUE_ID' => 'YhDTOUUPLQdm8kJeg0MUMwAAAd0',
+    'PHP_SELF' => '/dev/master-admin/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1645269817.219235897064208984375,
+    'REQUEST_TIME' => 1645269817,
+    'argv' => [
+        'merchantId=41',
+    ],
+    'argc' => 1,
+]
+[04-Mar-2022 17:07:39 UTC] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home1/superqcp/public_html/dev/master-admin/controllers/AdminController.php on line 1344. in /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/base/ErrorHandler.php(123): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home1/superqcp/public_html/dev/master-admin/controllers/AdminController.php on line 1344. in /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home1/superqcp/public_html/dev/master-admin/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home1/superqcp/public_html/dev/master-admin/web/index.php(12): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTENT_LENGTH' => '18',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded; charset=UTF-8',
+    'CONTEXT_DOCUMENT_ROOT' => '/home1/superqcp/public_html',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home1/superqcp/public_html',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTP_ACCEPT' => '*/*',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => '_identity=cecb2221733b59be12c019cea8ce74700cd1cbbcd74dd165f520d1a5240c21cca%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A16%3A%22%5B1%2Cnull%2C2592000%5D%22%3B%7D; _csrf=09d1ab2147298960a2634ad647c9293851e2b0074a57243074584798d4b11b3ba%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22U_JlFIiFLiGB4MWN3QvHY88tGWrRHAkp%22%3B%7D; PHPSESSID=feb5ed7e98df9ab0b15d43c7de22efdf; advanced-frontend=5678b59ad774005b02fb47a81a44fb74',
+    'HTTP_HOST' => 'superpilot.in',
+    'HTTP_ORIGIN' => 'http://superpilot.in',
+    'HTTP_REFERER' => 'http://superpilot.in/dev/master-admin/web/admin/merchant-amenities',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
+    'HTTP_X_CSRF_TOKEN' => 'cLbbOqCNXhbUVHwYe0pEtPv_vBWOer-xS2BfrttgvcEl6ZFW5sQ3UJg9O1pPBxP6yK7KXddCh8UMNy38kyHWsQ==',
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    'PATH' => '/bin:/usr/bin',
+    'PHP_INI_SCAN_DIR' => '/opt/cpanel/ea-php73/root/etc:/opt/cpanel/ea-php73/root/etc/php.d:.',
+    'QUERY_STRING' => '',
+    'REDIRECT_SCRIPT_URI' => 'http://superpilot.in/dev/master-admin/web/admin/change-amenity-status',
+    'REDIRECT_SCRIPT_URL' => '/dev/master-admin/web/admin/change-amenity-status',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'YiJHW_RXfUFnydaFpfcO4gAAAAk',
+    'REDIRECT_URL' => '/dev/master-admin/web/admin/change-amenity-status',
+    'REMOTE_ADDR' => '183.83.169.156',
+    'REMOTE_PORT' => '24547',
+    'REQUEST_METHOD' => 'POST',
+    'REQUEST_SCHEME' => 'http',
+    'REQUEST_URI' => '/dev/master-admin/web/admin/change-amenity-status',
+    'SCRIPT_FILENAME' => '/home1/superqcp/public_html/dev/master-admin/web/index.php',
+    'SCRIPT_NAME' => '/dev/master-admin/web/index.php',
+    'SCRIPT_URI' => 'http://superpilot.in/dev/master-admin/web/admin/change-amenity-status',
+    'SCRIPT_URL' => '/dev/master-admin/web/admin/change-amenity-status',
+    'SERVER_ADDR' => '116.206.105.109',
+    'SERVER_ADMIN' => 'webmaster@superpilot.in',
+    'SERVER_NAME' => 'superpilot.in',
+    'SERVER_PORT' => '80',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'TZ' => 'UTC',
+    'UNIQUE_ID' => 'YiJHW_RXfUFnydaFpfcO4gAAAAk',
+    'PHP_SELF' => '/dev/master-admin/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1646413659.4060609340667724609375,
+    'REQUEST_TIME' => 1646413659,
+    'argv' => [],
+    'argc' => 0,
+]
