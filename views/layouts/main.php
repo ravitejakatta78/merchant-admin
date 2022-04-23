@@ -18,7 +18,7 @@ AppAsset::register($this);
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FOODQ Master</title>
+    <title>SuperPilot Admin</title>
     		<link rel="shortcut icon" href="<?php echo Url::base(); ?>/favicon.png" type="image/x-icon" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -104,7 +104,7 @@ echo \Yii::$app->view->renderFile('@app/views/layouts/_sidebar.php');
 
                 </div>
                 <div class="col-sm-6 text-right">
-                  <p>© 2020 FoodQ Technologies <a href="#" class="external"></a></p>
+                  <p>©️ 2021 Super Pilot Innovation<a href="#" class="external"></a></p>
                 </div>
               </div>
             </div>

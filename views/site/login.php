@@ -14,7 +14,7 @@ AppAsset::register($this);
 <html lang="zxx">
 
 <head>
-	<title>FoodQ Admin Login</title>
+	<title>SuperPilot Admin Log</title>
 	<!-- Meta tag Keywords -->
 	<link rel="shortcut icon" href="<?php echo Url::base(); ?>/favicon.png" type="image/x-icon" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,9 +31,9 @@ AppAsset::register($this);
 				<div class="d-grid forms23-grids">
 					<div class="form23">
 						<div class="main-bg">
-							<h6 class="sec-one">FoodQ Admin Login</h6>
+							<h6 class="sec-one">SuperPilot Admin Login</h6>
 							<div class="speci-login first-look">
-								<img src="<?= Yii::$app->request->baseUrl.'/img/food-q.png';?>" width="100%" alt="" class="img-responsive">
+								<img src="<?= Yii::$app->request->baseUrl.'/img/superpilot.png';?>" width="100%" alt="" class="img-responsive">
 							</div>
 						</div>
 						<div class="bottom-content">
@@ -65,7 +65,7 @@ AppAsset::register($this);
 					</div>
 				</div>
 				<div class="w3l-copy-right text-center">
-					<p>© 2020 FoodQ Technologies</p>
+					<p>© 2021 SuperPilot Innovations</p>
 				</div>
 			</div>
 		</div>
