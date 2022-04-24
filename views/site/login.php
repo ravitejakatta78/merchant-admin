@@ -14,7 +14,7 @@ AppAsset::register($this);
 <html lang="zxx">
 
 <head>
-	<title>SuperPilot Admin Log</title>
+	<title>SuperPilot Admin Log In</title>
 	<!-- Meta tag Keywords -->
 	<link rel="shortcut icon" href="<?php echo Url::base(); ?>/favicon.png" type="image/x-icon" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
