@@ -201,12 +201,6 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 
 	   </div></div>
 	   	    <div class="form-group row">
-	            <label class="control-label col-md-4">Tax</label>
-	            <div class="col-md-8">
-                    <?= $form->field($model, 'tax')->textinput(['class' => 'form-control','autocomplete'=>'off','placeholder'=>'Enter Tax'])->label(false); ?>
-	            </div>
-	        </div>
-	        <div class="form-group row">
 	            <label class="control-label col-md-4">Subscription</label>
 	            <div class="col-md-8">
 	                <div class="input-group-prepend">
