@@ -68,7 +68,7 @@ class Merchant extends \yii\db\ActiveRecord
 			, 'longitude', 'qrlogo', 'coverpic', 'status', 'recommend', 'verify', 'description', 'servingtype', 'plan', 'useraccess', 'gst_number'], 'string'],
             [['otp','ID','owner_type','open_time','close_time','table_res_avail','table_occupy_status', 'popularity', 'cancel_decision'
             , 'merchant_bill_copy', 'cancel_with_otp'], 'integer'],
-            [['scan_range','tax','tip', 'approx_cost'], 'number'],
+            [['scan_range','tip', 'approx_cost'], 'number'],
             [['mod_date','food_serve_type','subscription_date','allocated_msgs','used_msgs'], 'safe'],
             [['user_id', 'unique_id', 'name', 'email'], 'string', 'max' => 50],
             [['reg_date'], 'string', 'max' => 20],
@@ -118,7 +118,6 @@ class Merchant extends \yii\db\ActiveRecord
             'plan' => 'Plan',
             'useraccess' => 'Useraccess',
             'scan_range' => 'Scan Range',
-            'tax' => 'Tax',
             'tip' => 'Tip',
             'reg_date' => 'Reg Date',
             'mod_date' => 'Mod Date',
