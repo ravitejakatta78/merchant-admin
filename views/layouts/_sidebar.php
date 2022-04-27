@@ -8,16 +8,7 @@ use yii\helpers\Url;
 $actionId = Yii::$app->controller->action->id;
 ?>
 <nav class="side-navbar">
-          <!-- Sidebar Header-->
-          <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar">
-			<img src="<?= Url::to(['../../merchantimages/food-q.png'])?>" alt="..." class="img-fluid rounded-circle">	
-			</div>
-            <div class="title">
-              <h1 class="h4"><?= Yii::$app->user->identity->name; ?></h1>
-              
-            </div>
-          </div>
+          
           <!-- Sidebar Navidation Menus-->
           <ul class="list-unstyled">
     <!--      <li class="<?php if($actionId == 'index' || $actionId == 'transactiondash' ) { echo "active" ;} ?>">

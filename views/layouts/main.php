@@ -47,7 +47,7 @@ AppAsset::register($this);
               <div class="navbar-header">
                 <!-- Navbar Brand --><a href="<?= \yii\helpers\Url::to('../admin/dashboard'); ?>" class="navbar-brand d-none d-sm-inline-block">
                   <div class="brand-text d-none d-lg-inline-block">
-				  <img src="<?= Yii::$app->request->baseUrl.'/img/food-q.png';?>" style="max-height:4.3rem;" > </div>
+				  <img src="<?= Yii::$app->request->baseUrl.'/img/superpilot-1.png';?>" style="max-height:4.3rem;" > </div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>HM</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
               </div>
@@ -55,6 +55,11 @@ AppAsset::register($this);
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Search-->
                 <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                <li class="nav-item d-flex">
+                <h1 class="h4 mt-1"><a href="<?= \yii\helpers\Url::to('../admin/dashboard'); ?>" style="text-decoration: none;"><i class="fa fa-user-circle-o" style="font-size:24"></i>
+ SuperPilot Admin</a></h1>
+
+                </li>
                 <!-- Notifications-->
                 <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
