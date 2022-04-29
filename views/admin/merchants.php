@@ -229,6 +229,15 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
         <?= $form->field($model, 'gst_number')->textinput(['class' => 'form-control','autocomplete'=>'off','placeholder'=>'GST Number'])->label(false); ?>
    </div></div>
 	        
+
+   <div class="form-group row">
+	   <label class="control-label col-md-4">Reverse Buzz</label>
+	 <div class="col-md-8">
+			       <?= $form->field($model, 'reverse_buzz')
+				  ->dropdownlist(['1'=>'Enable','2'=>'Disable']
+				  ,['prompt'=>'Select'])->label(false); ?>
+	   </div></div>
+
     </div>
 <div class="col-md-6">
 	   <div class="form-group row">
