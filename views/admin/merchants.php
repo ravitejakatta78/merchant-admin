@@ -320,7 +320,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 <div class="form-group row">
 	   <label class="control-label col-md-4">Close Time</label>
 	   <div class="col-md-8">
-			      <?= $form->field($model, 'close_time')
+			      <?= $form->field($model, 'close_time',['enableAjaxValidation' => true])
 				  ->dropdownlist($hrRange,['prompt'=>'Select'])->label(false); ?>  
 	   </div></div>
 	   	    <div class="form-group row">

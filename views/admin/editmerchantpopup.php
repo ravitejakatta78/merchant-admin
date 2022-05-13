@@ -220,7 +220,7 @@ $hrRange = ['0'=>'12 AM','1'=>'1 AM','2'=>'2 AM','3'=>'3 AM','4'=>'4 AM','5'=>'5
 <div class="form-group row">
 	   <label class="control-label col-md-4">Close Time</label>
 	   <div class="col-md-8">
-			      <?= $form->field($model, 'close_time')
+			      <?= $form->field($model, 'close_time',['enableAjaxValidation' => true])
 				  ->dropdownlist($hrRange,['prompt'=>'Select'])->label(false); ?>  
 	   </div></div>
 	   	   	    <div class="form-group row">

@@ -81,8 +81,8 @@ class Merchant extends \yii\db\ActiveRecord
 			['mobile','string','min'=>10],
 			[['latitude','longitude'],'double'],
 			['mobile','updatemerchantemail', 'on'=>'updateemail'],			
-			['close_time', 'compare', 'compareAttribute' => 'open_time', 'operator' => '>='],
-
+			//['close_time', 'compare', 'compareAttribute' => 'open_time', 'operator' => '>='],
+            ['close_time','comparetimings']
         ];
     }
 
@@ -146,6 +146,18 @@ class Merchant extends \yii\db\ActiveRecord
 					$this->addError($attribute, 'This '.$attribute.' has already been taken.');
 			}
 	    }
+    }
+
+    public function comparetimings($attribute, $params)
+    {
+        if(!empty($this->open_time) ){
+            if($this->open_time > $this->$attribute) {
+                $this->addError($attribute, 'Closed Time Should Be Greater Than The Open Time');
+            }
+        }
+        else{
+            $this->addError($attribute, 'Please Add Open Time');
+        }
     }
 	
 }
