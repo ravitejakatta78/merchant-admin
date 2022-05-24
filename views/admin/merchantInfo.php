@@ -99,8 +99,8 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
             </table>
             <input type="hidden" name="merchantId" value="<?= $merchantId; ?>">
             <div class="modal-footer">
-               <button id="btnAddRow" class="btn btn-add btn-xs" type="button">Add Info</button>
-        		<?= Html::submitButton('Add Info', ['class'=> 'btn btn-add btn-hide']); ?>
+               <button id="btnAddRow" class="btn btn-add btn-xs" type="button">Add Row</button>
+        		<?= Html::submitButton('Submit', ['class'=> 'btn btn-add btn-hide']); ?>
              </div> 
             </form>     
 	    </div>
