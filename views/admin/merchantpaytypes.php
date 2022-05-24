@@ -44,8 +44,8 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                          <th>S No</th>
 						<th>Merchant Name</th>
 						<th>Payment Type</th>
-						<th>Merchant Id</th>
-						<th>Merchant Key</th>
+					<!--	<th>Merchant Id</th>
+						<th>Merchant Key</th> -->
 						<th>Status</th>
 						<th>Action</th>
                       </tr>
@@ -66,12 +66,12 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                                                     <td>
                                                         <?php echo $paytypearray[$merchantPay['paymenttype']]; ?>
                                                     </td>
-                                                    <td>
-                                                        <?php echo $merchantPay['merchantid']; ?>
-                                                    </td>													
-                                                    <td>
-                                                        <?php echo $merchantPay['merchantkey']; ?>
-                                                    </td>
+<!--                                                    <td>-->
+<!--                                                        --><?php //echo $merchantPay['merchantid']; ?>
+<!--                                                    </td>													-->
+<!--                                                    <td>-->
+<!--                                                        --><?php //echo $merchantPay['merchantkey']; ?>
+<!--                                                    </td>-->
                                                     <td><label class="switch">
             										  <input type="checkbox" <?php if($merchantPay['status']=='1'){ echo 'checked';}?> onChange="changestatus('merchant_paytypes',<?php echo $merchantPay['ID'];?>);">
             										  <span class="slider round"></span>
@@ -125,11 +125,11 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 	   <div class="form-group row">
 	   <label class="control-label col-md-4">Merchant Name</label>
 	   <div class="col-md-8">
-	   <select name="MerchantPaytypes[merchant_id]" id="merchantpaytypes-merchant_id" class="form-control select2-hidden-accessible">
-	   				  <option value="<?= $merchants['ID'] ?>"> <?= $merchants['storename'] ?></option>
-	   </select>
-	
-			    
+<!--	   <select name="MerchantPaytypes[merchant_id]" id="merchantpaytypes-merchant_id" class="form-control select2-hidden-accessible">-->
+<!--	   				  <option value="--><?//= $merchants['ID'] ?><!--"> --><?//= $merchants['storename'] ?><!--</option>-->
+<!--	   </select>-->
+	    <input type="hidden" value="<?= $merchants['ID']; ?>" name="MerchantPaytypes[merchant_id]">
+           <?= $merchants['storename'] ?>
 	   </div>
 	   </div>
 	   <div class="form-group row">
@@ -150,40 +150,11 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 	   
 	   </div></div>
 	   
-	   	   <div class="form-group row">
-	   <label class="control-label col-md-4">Status</label>
-	   <div class="col-md-8">
-	   
 
-	   	   <select name="MerchantPaytypes[status]" id="merchantpaytypes-status" class="form-control select2-hidden-accessible">
-		   <option value="1">Yes</option>
-		   <option value="2">No</option>
-		   <option value="3">UPI</option>
-		   <option value="4">Card</option>
-		   
-
-	   </select>
-	   	<div id="err_paymenttype" style="color:red;display:none">Payment Type is required</div>
-	   
-	   </div></div>
 
 	   
 </div>
-<div class="col-md-6">
-	   <div class="form-group row">
-	   <label class="control-label col-md-4">Merchant Id</label>
-	   <div class="col-md-8">
-	   <input type="text" name="MerchantPaytypes[merchantid]" id="merchantpaytypes-merchantid" class="form-control" >
-<div id="err_paymentid" style="color:red;display:none">Merchant Id is required</div>
-	   </div></div>
-	   <div class="form-group row">
-	   <label class="control-label col-md-4">Merchant Key </label>
-	   <div class="col-md-8">
-	   	   <input type="text" name="MerchantPaytypes[merchantkey]" id="merchantpaytypes-merchantkey" class="form-control" >
-	  
-<div id="err_paymentkey" style="color:red;display:none">Merchant Key is required</div>
-	   </div></div>
-	   </div>
+
 	   </div>
 	   </div>
 	   <div class="modal-footer">
