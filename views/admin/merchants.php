@@ -67,7 +67,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                                   <tr>
                                  	<td><?php echo $x;?></td>
                                  	<td><?php echo $merchant['unique_id'];?></td> 
-                                 	<td><img style="width:100px;height:100px" src="<?= Yii::$app->request->baseUrl.'/../../merchantimages/'. $merchant['logo'];?>"/></td> 
+                                 	<td><img style="width:100px;height:100px" src="<?= Yii::$app->request->baseUrl.'/../../merchant_images/merchantimages/'. $merchant['logo'];?>"/></td> 
                                  	<td><strong><?php echo $merchant['name'];?></strong><br/><?php echo $merchant['email'];?>
 									<br/><?php echo $merchant['mobile'];?></td> 
 										<td><strong><?php echo $merchant['storename'];?></strong></td> 

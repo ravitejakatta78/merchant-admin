@@ -496,19 +496,19 @@ public function actionUpdatecoupon()
 			$coverpicimage = UploadedFile::getInstance($model, 'coverpic');	
 			if($logoimage){
 				$logoimagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$logoimage->extension;
-				$logoimage->saveAs('../../merchantimages/' . $logoimagename);
+				$logoimage->saveAs('../../merchant_images/merchantimages/' . $logoimagename);
 				$model->logo = $logoimagename;
 
 			}
 	
 			if($qrlogoimage){
 				$qrlogoimagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$qrlogoimage->extension;
-				$qrlogoimage->saveAs('../../merchantimages/' . $qrlogoimagename);
+				$qrlogoimage->saveAs('../../merchant_images/merchantimages/' . $qrlogoimagename);
 				$model->qrlogo = $qrlogoimagename;
 			}
 			if($coverpicimage){
 				$coverpicimageimagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$coverpicimage->extension;
-				$coverpicimage->saveAs('../../merchantimages/' . $coverpicimageimagename);
+				$coverpicimage->saveAs('../../merchant_images/merchantimages/' . $coverpicimageimagename);
 				$model->coverpic = $coverpicimageimagename;
 			}
 			if($model->validate()){
@@ -636,7 +636,7 @@ public function actionUpdatecoupon()
 	$coverpicimage = UploadedFile::getInstance($merchantUpdate, 'coverpic');	
 	if($logoimage){
 					if(!empty($oldLogo)){
-					$imagePath =  '../../'.Url::to(['../../merchantimages/'. $oldLogo]);
+					$imagePath =  '../../'.Url::to(['../../merchant_images/merchantimages/'. $oldLogo]);
 					if(file_exists($imagePath)){
 						unlink($imagePath);	
 					}
@@ -644,7 +644,7 @@ public function actionUpdatecoupon()
 				}
 				
 				$logoimagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$logoimage->extension;
-				$logoimage->saveAs('../../merchantimages/' . $logoimagename);
+				$logoimage->saveAs('../../merchant_images/merchantimages/' . $logoimagename);
 				$merchantUpdate->logo = $logoimagename;
 
 			}else{
@@ -653,26 +653,26 @@ public function actionUpdatecoupon()
 	
 			if($qrlogoimage){
 				if(!empty($oldQrLogo)){
-					$imagePath =  '../../'.Url::to(['../../merchantimages/'. $oldQrLogo]);
+					$imagePath =  '../../'.Url::to(['../../merchant_images/merchantimages/'. $oldQrLogo]);
 					if(file_exists($imagePath)){
 						unlink($imagePath);	
 					}
 				}
 				$qrlogoimagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$qrlogoimage->extension;
-				$qrlogoimage->saveAs('../../merchantimages/' . $qrlogoimagename);
+				$qrlogoimage->saveAs('../../merchant_images/merchantimages/' . $qrlogoimagename);
 				$merchantUpdate->qrlogo = $qrlogoimagename;
 			}else{
 				$merchantUpdate->qrlogo = $oldQrLogo;
 			}
 			if($coverpicimage){
 				if(!empty($oldCoverpic)){
-					$imagePath =  '../../'.Url::to(['../../merchantimages/'. $oldCoverpic]);
+					$imagePath =  '../../'.Url::to(['../../merchant_images/merchantimages/'. $oldCoverpic]);
 					if(file_exists($imagePath)){
 						unlink($imagePath);	
 					}
 				}
 				$coverpicimageimagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$coverpicimage->extension;
-				$coverpicimage->saveAs('../../merchantimages/' . $coverpicimageimagename);
+				$coverpicimage->saveAs('../../merchant_images/merchantimages/' . $coverpicimageimagename);
 				$merchantUpdate->coverpic = $coverpicimageimagename;
 			}else{
 				$merchantUpdate->coverpic = $oldCoverpic;
