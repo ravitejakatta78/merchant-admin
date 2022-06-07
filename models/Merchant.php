@@ -150,7 +150,7 @@ class Merchant extends \yii\db\ActiveRecord
 
     public function comparetimings($attribute, $params)
     {
-        if(!empty($this->open_time) ){
+        if(isset($this->open_time) ){
             if($this->open_time > $this->$attribute) {
                 $this->addError($attribute, 'Closed Time Should Be Greater Than The Open Time');
             }
