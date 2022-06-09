@@ -16,7 +16,7 @@ AppAsset::register($this);
 <head>
 	<title>SuperPilot Admin Log In</title>
 	<!-- Meta tag Keywords -->
-	<link rel="shortcut icon" href="<?= Yii::$app->request->baseUrl.'/img/superpilot.png'?>" type="image/x-icon" />
+	<link rel="shortcut icon" href="<?php echo Url::base(); ?>/Frame49.png" type="image/x-icon" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
 	<meta name="keywords" content="" />
