@@ -84,9 +84,9 @@ $actionId = Yii::$app->controller->action->id;
 			<li class="<?php if($actionId == 'contest') { echo "active" ;} ?> ">
 				<a href="<?php echo Url::to(['admin/contest']); ?>"> <i class="fa fa-bell"></i>Contest</a>
 			</li>
-	<!--		<li class="<?php if($actionId == 'categeries') { echo "active" ;} ?> ">
-				<a href="<?php echo Url::to(['admin/categeries']); ?>"> <i class="fa fa-tags"></i>Category </a>
-			</li>			-->
+			<li class="<?php if($actionId == 'partner-with-us') { echo "active" ;} ?> ">
+				<a href="<?php echo Url::to(['admin/partner-with-us']); ?>"> <i class="fa fa-handshake-o"></i>Partner With Us</a>
+			</li>			
             <li class="<?php if($actionId == 'permissions') { echo "active" ;} ?> ">
 				<a href="<?php echo Url::to(['admin/permissions']); ?>"> <i class="fa fa-bell"></i>Permissions</a>
 			</li>

@@ -1380,5 +1380,13 @@ $str.='</chart>';
 	    
 	    return json_encode($payload);
 	}
+
+	public function actionPartnerWithUs()
+	{
+		$sql = 'select * from partner_with_us order by id desc';
+		$res = Yii::$app->db->createCommand($sql)->queryAll();
+
+		return $this->render('partner-with-us', ['res' => $res]);
+	}
 	
 }
