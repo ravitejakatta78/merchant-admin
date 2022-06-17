@@ -16,6 +16,7 @@ use \app\models\Rewards;
 use \app\models\MerchantCoupon;
 use \app\models\Merchant;
 use \app\models\MerchantPaytypes;
+use \app\models\Articles;
 use yii\db\Query;
 
 
@@ -753,6 +754,15 @@ $merchantDet = Merchant::findOne($id);
 				$status = '1';
 		}
 	}
+	else if($tablename == 'articles')
+	{
+		$details = Articles::findOne($tableid);	
+	if($details['status']=='1'){
+				$status ='0';
+		}else{
+				$status = '1';
+		}
+	}
 else if($tablename == 'coupon')
 	{
 		$details = MerchantCoupon::findOne($tableid);	
@@ -1388,5 +1398,111 @@ $str.='</chart>';
 
 		return $this->render('partner-with-us', ['res' => $res]);
 	}
+
+	public function actionArticles()
+	{
+
+		$sdate = isset($_POST['sdate']) ? $_POST['sdate'] : date('Y-m-d'); 
+		$edate = isset($_POST['sdate']) ? $_POST['edate'] : date('Y-m-d');
+		
+		$sqlArticles = 'select * from articles where date(reg_date) between \''.$sdate.'\' and \''.$edate.'\' ';
+		$articles = Yii::$app->db->createCommand($sqlArticles)->queryAll();
+
+		$model = new Articles;
+
+        if ($model->load(Yii::$app->request->post()) ) {
+            $model->status = 1;
+            $model->reg_date = date('Y-m-d H:i:s A');
+            $model->created_by = Yii::$app->user->identity->ID;
+            $model->updated_by = Yii::$app->user->identity->ID;
+            $model->updated_on = date('Y-m-d H:i:s A');
+
+			$image = UploadedFile::getInstance($model, 'image');
+
+			if($image){
+				$imagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$image->extension;
+				$path = '../../merchant_images/articles/';
+				if (!is_dir($path)) {
+					mkdir($path, 0777, true);
+				}
+				$image->saveAs($path.$imagename);
+				$model->image = $imagename;
+
+			}
+            if($model->validate()){
+                $model->save();
+                Yii::$app->getSession()->setFlash('success', [
+                    'title' => 'Artcile',
+                    'text' => 'Artcile Added Successfully',
+                    'type' => 'success',
+                    'timer' => 3000,
+                    'showConfirmButton' => false
+                ]);
+                return $this->redirect('articles');
+            }
+            else
+            {
+                echo "<pre>";print_r($model->getErrors());exit;
+            }
+        }
+
+        return $this->render("articles",['articles' => $articles,'model' => $model, 'sdate' => $sdate, 'edate' => $edate]);
+	}
+
+	public function actionDeleteArticle()
+	{
+		$articlesDelete = Articles::findOne($_POST['id']);
+		$imagePath =  '../merchant_images/articles/'. $articlesDelete['image'];
+		if(file_exists($imagePath)){
+			unlink($imagePath);	
+		}
+		$articlesDelete->delete();
+		return 1;
+	}
+
+	public function actionEditArticlePopup()
+    {
+        extract($_POST);
+        $printerModel = Articles::findOne($id);
+        return $this->renderAjax('editarticlepopup', ['model' => $printerModel,'id'=>$id]);
+    }
+    public function actionEditArticle()
+    {
+        $model = new Articles;
+        //$model->scenario = 'updateprinter';
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+        $articleArr = Yii::$app->request->post('Articles');
+        $articleUpdate = Articles::findOne($_POST['Articles']['ID']);
+		$oldArticleImage = $articleUpdate['image']; 
+        $articleUpdate->attributes = \Yii::$app->request->post('Articles');
+		$image = UploadedFile::getInstance($model, 'image');
+		if($image){
+			if(!empty($oldArticleImage)){
+				$imagePath =  '../../merchant_images/articles/'. $oldArticleImage;
+				if(file_exists($imagePath)){
+					unlink($imagePath);	
+				}
+			}
+		}
+		$imagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$image->extension;
+		$image->saveAs('../../merchant_images/articles/' . $imagename);
+		$articleUpdate->image = $imagename;
+
+        if($articleUpdate->validate()){
+            $articleUpdate->save();
+            Yii::$app->getSession()->setFlash('success', [
+                'title' => 'Article',
+                'text' => 'Article Edited Successfully',
+                'type' => 'success',
+                'timer' => 3000,
+                'showConfirmButton' => false
+            ]);
+        }
+        return $this->redirect('articles');
+
+    }
 	
 }
