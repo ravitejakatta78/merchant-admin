@@ -59,9 +59,9 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header d-flex align-items-center pt-0 pb-0">
-                <h3 class="h4 col-md-6 pl-0 tab-title">Articles</h3>
+                <h3 class="h4 col-md-6 pl-0 tab-title">Food Shorts</h3>
 				<div class="col-md-6 text-right pr-0">
-					<button type="button" class="btn btn-add btn-xs" id="myBtn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus mr-1"></i> Add Article</button>
+					<button type="button" class="btn btn-add btn-xs" id="myBtn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus mr-1"></i> Add Food Short</button>
 				</div>
               </div>
 
@@ -114,29 +114,26 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                       	<tr>
 							<th>S.No</th>
 							<th>Title</th>
-							<th>Image</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
                     </thead>
 		    		<tbody>
 						<?php $x=1; 
-						foreach($articles as $article){
+						foreach($foodShorts as $foodShort){
 						?>
                             <tr>
 								<td><?= $x; ?></td>
-								<td><?= $article['title']; ?></td>
-								<td><img style="width:100px;height:100px" src="<?= Yii::$app->request->baseUrl.'/../../merchant_images/articles/'. $article['image'];?>" ></td>
-								
+								<td><?= $foodShort['title']; ?></td>
 								<td>
 									<label class="switch">
-										  <input type="checkbox" <?php if($article['status']=='1'){ echo 'checked';}?> onChange="changestatus('articles',<?php echo $article['ID'];?>);">
+										  <input type="checkbox" <?php if($foodShort['status']=='1'){ echo 'checked';}?> onChange="changestatus('foodShorts',<?php echo $foodShort['ID'];?>);">
 										  <span class="slider round"></span>
 									</label>
 								</td>
 								<td class="icons">
-									<a title="Article - Delete" onClick="deleteArticle('<?= $article['ID']; ?>')"   ><span class="fa fa-trash"></span></a>
-								    <a title="Article - Edit" onClick="editArticle('<?= $article['ID']; ?>')"   ><span class="fa fa-edit"></span></a>
+									<a title="Article - Delete" onClick="deleteFoodShort('<?= $foodShort['ID']; ?>')"   ><span class="fa fa-trash"></span></a>
+								    <a title="Article - Edit" onClick="editFoodShort('<?= $foodShort['ID']; ?>')"   ><span class="fa fa-edit"></span></a>
 								</td>
 							</tr>
 							
@@ -154,7 +151,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
       
 				<!-- Modal Header -->
 				<div class="modal-header">
-				<h4 class="modal-title">Add Article</h4>
+				<h4 class="modal-title">Add Food Short</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
         
@@ -164,7 +161,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 					<?php
 						$form = ActiveForm::begin([
     						'id' => 'add-article-form',
-							'options' => ['class' => 'form-horizontal','wrapper' => 'col-xs-12',],
+							'options' => ['class' => 'form-horizontal','wrapper' => 'col-xs-12','enctype'=> 'multipart/form-data'],
 								'layout' => 'horizontal',
 								'fieldConfig' => [
 									'horizontalCssClasses' => [
@@ -185,14 +182,6 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 						</div>
 						<div class="col-md-6">	
 							<div class="form-group row">
-	   							<label class="control-label col-md-4">Image</label>
-								<div class="col-md-8">
-											<?= $form->field($model, 'image')->fileinput(['class' => 'form-control'])->label(false); ?>
-								</div>
-	   						</div>
-						</div>
-						<div class="col-md-6">	
-							<div class="form-group row">
 	   							<label class="control-label col-md-4">Content</label>
 								<div class="col-md-8">
 											<?= $form->field($model, 'content')->textarea(['class' => 'form-control'])->label(false); ?>
@@ -200,9 +189,31 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 	   						</div>
 						</div>
 					</div>
+					<table id="tblAddRow" class="table table-bordered table-striped">
+    					<thead>
+							<tr>
+								<th>Image</th>
+								<th>Action</th>
+							</tr>
+    					</thead>
+    					<tbody>
+							<tr>
+
+								
+								<td>
+									<input type="file" name="image[]" class="form-control">
+								</td>
+								
+							</tr>
+						
+						</tbody>
+					</table>
 	   			</div>
 	   			<div class="modal-footer">
-					<?= Html::submitButton('Add Article', ['class'=> 'btn btn-add btn-hide']); ?>
+				   <button id="btnAddRow" class="btn btn-add btn-xs" type="button">
+    					Add Row
+					</button>
+					<?= Html::submitButton('Add Food Short', ['class'=> 'btn btn-add btn-hide']); ?>
 		        </div> 		
 				<?php ActiveForm::end() ?>
 			</div>
@@ -210,22 +221,19 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 	</div>	
 
 
-	<div id="editarticle" class="modal fade" role="dialog">
-<div class="modal-dialog modal-lg" >
-      <div class="modal-content">
+<div id="editfoodshort" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-lg" >
+    	<div class="modal-content">
       
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Article</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-	    <div class="modal-body" id="editarticlebody">
-		
-		</div>	
-		
-		  
-		
-	</div>
+			<!-- Modal Header -->
+			<div class="modal-header">
+			<h4 class="modal-title">Edit Food Short</h4>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div id="editfoodshortbody">
+			
+			</div>	
+		</div>
 	</div>
 </div>
 
@@ -237,7 +245,7 @@ JS;
 $this->registerJs($script);
 ?>
 <script>
-function deleteArticle(id){
+function deleteFoodShort(id){
 		    swal({
 				title: "Are you sure want to delete??", 
 				type: "warning",
@@ -246,7 +254,7 @@ function deleteArticle(id){
 		    	.then((result) => {
 					if (result.value) {
 					    var request = $.ajax({
-						  url: "delete-article",
+						  url: "delete-food-short",
 						  type: "POST",
 						  data: {id : id},
 						}).done(function(msg) {
@@ -259,17 +267,53 @@ function deleteArticle(id){
 
 }
 
-function editArticle(id)
+function editFoodShort(id)
 {
 
 $.ajax({
-  url: "edit-article-popup",
+  url: "edit-food-short-popup",
   type: "POST",
   data: {id : id},
 }).done(function(msg) {
-	$('#editarticlebody').html(msg);
-	$('#editarticle').modal('show');
+	$('#editfoodshortbody').html(msg);
+	$('#editfoodshort').modal('show');
 });		
 
 }
+
+$('#tblAddRow tbody tr')
+    .find('td')
+    .parent() //traversing to 'tr' Element
+    .append('<td><a href="#" class="delrow"><i class="fa fa-trash border-red text-red"></i></a></td>');
+
+// Add row the table
+$('#btnAddRow').on('click', function() {
+    var lastRow = $('#tblAddRow tbody tr:last').html();
+    //alert(lastRow);
+	var lenRow = $('#tblAddRow tbody tr').length;
+	if(lenRow >= 9) {
+		swal(
+			'Warning!',
+			'You Cannot Add More Than 9 Images',
+			'warning'
+		);
+		return false;
+	} else {
+		$('#tblAddRow tbody').append('<tr>' + lastRow + '</tr>');
+    	$('#tblAddRow tbody tr:last input').val('');
+	}
+    
+});
+
+
+// Delete row on click in the table
+$('#tblAddRow').on('click', 'tr a', function(e) {
+    var lenRow = $('#tblAddRow tbody tr').length;
+    e.preventDefault();
+    if (lenRow == 1 || lenRow <= 1) {
+        alert("Can't remove all row!");
+    } else {
+        $(this).parents('tr').remove();
+    }
+});
 </script>

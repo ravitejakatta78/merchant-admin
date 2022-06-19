@@ -116,3 +116,30 @@ section.dashboard-counts .icon, .statistic .icon {
 .loading{position: absolute;z-index: 9999;width: 100%;background: #6c6c6c47;height: 100%;text-align: center;padding-top: 20%;overflow-y:hidden;}
 .loading >img{border-radius: 16%;height: 150px;width: 150px;}
 .page{overflow-x: initial !important;}
+
+ul.resp-tabs-list, p {
+  margin: 0;
+  padding: 0;
+}
+.resp-tabs-list li {
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 15px 15px;
+  margin: 0 4px 0 0;
+      margin-bottom: 0px;
+  list-style: none;
+  cursor: pointer;
+  float: left;
+background:#ffcf95;
+border-radius:4px 4px 0 0;
+color:#333;
+}
+.resp-tab-active {
+  padding: 12px 14px 14px !important;
+  border-top: 4px solid #fe2503 !important;
+  border-bottom: 0 #fff solid !important;
+background:#FD8B02 !important;
+color:#fff !important;
+
+}

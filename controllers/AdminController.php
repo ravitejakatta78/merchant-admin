@@ -17,6 +17,8 @@ use \app\models\MerchantCoupon;
 use \app\models\Merchant;
 use \app\models\MerchantPaytypes;
 use \app\models\Articles;
+use \app\models\FoodShorts;
+use \app\models\FoodShortsImages;
 use yii\db\Query;
 
 
@@ -757,6 +759,13 @@ $merchantDet = Merchant::findOne($id);
 	else if($tablename == 'articles')
 	{
 		$details = Articles::findOne($tableid);	
+	if($details['status']=='1'){
+				$status ='0';
+		}else{
+				$status = '1';
+		}
+	} else if($tablename == 'foodShorts') {
+		$details = FoodShorts::findOne($tableid);	
 	if($details['status']=='1'){
 				$status ='0';
 		}else{
@@ -1504,5 +1513,132 @@ $str.='</chart>';
         return $this->redirect('articles');
 
     }
+
+	public function actionFoodShorts()
+	{
+		$model = new FoodShorts;
+
+		$sdate = isset($_POST['sdate']) ? $_POST['sdate'] : date('Y-m-d'); 
+		$edate = isset($_POST['sdate']) ? $_POST['edate'] : date('Y-m-d');
+		
+		$sqlFoodShorts = 'select * from food_shorts where date(reg_date) between \''.$sdate.'\' and \''.$edate.'\' ';
+		$foodShorts = Yii::$app->db->createCommand($sqlFoodShorts)->queryAll();
+
+		if ($model->load(Yii::$app->request->post()) ) {
+            $model->status = 1;
+            $model->reg_date = date('Y-m-d H:i:s A');
+            $model->created_by = Yii::$app->user->identity->ID;
+            $model->updated_by = Yii::$app->user->identity->ID;
+            $model->updated_on = date('Y-m-d H:i:s A');
+
+			
+            if($model->validate()){
+                $model->save();
+
+				$foodShortId =  $model->getPrimaryKey();	
+				
+				$imageArray = $_FILES['image']['name'];
+				if(!empty($imageArray))
+				{
+
+					for($i=0;$i<count($imageArray);$i++)
+					{
+						$tmp_name = $_FILES['image']['tmp_name'][$i];
+						$pic_extension = pathinfo($_FILES['image']['name'][$i], PATHINFO_EXTENSION);
+
+						$imagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$pic_extension;
+						$path = '../../merchant_images/food_shorts/';
+						if (!is_dir($path)) {
+							mkdir($path, 0777, true);
+						}
+						move_uploaded_file($tmp_name,$path.'/'.$imagename);
+						
+						$data[] = [$foodShortId,$imagename];
+						
+					}
+
+					if(!empty($data)) {
+						Yii::$app->db
+						->createCommand()
+						->batchInsert('food_shorts_images', ['food_short_id','image'],$data)
+						->execute();
+					}
+				}
+
+                Yii::$app->getSession()->setFlash('success', [
+                    'title' => 'Food Shorts',
+                    'text' => 'Food Short Added Successfully',
+                    'type' => 'success',
+                    'timer' => 3000,
+                    'showConfirmButton' => false
+                ]);
+                return $this->redirect('food-shorts');
+            }
+            else
+            {
+                echo "<pre>";print_r($model->getErrors());exit;
+            }
+        }
+        return $this->render("food-shorts",['foodShorts' => $foodShorts,'model' => $model, 'sdate' => $sdate, 'edate' => $edate]);
+
+
+	}
+
+	public function actionDeleteFoodShort()
+	{
+		$foodShort = FoodShorts::findOne($_POST['id']);
+		if(!empty($foodShort)) {
+			$sql = 'select * from food_shorts_images where food_short_id = \''.$_POST['id'].'\'' ;
+			$foodShortImagesDetail = Yii::$app->db->createCommand($sql)->queryAll();
 	
+			for($i=0; $i < count($foodShortImagesDetail); $i++) {
+				$imagePath =  '../../merchant_images/food_shorts/'. $foodShortImagesDetail[$i]['image'];
+				if(file_exists($imagePath)){
+					unlink($imagePath);	
+				}
+				$foodShortImage = FoodShortsImages::findOne($foodShortImagesDetail[$i]['ID']);
+				$foodShortImage->delete();
+			}
+	
+			
+			$foodShort->delete();
+	
+		}			
+		
+		return 1;
+	}
+	public function actionEditFoodShortPopup()
+    {
+        extract($_POST);
+        $foodShortsModel = FoodShorts::findOne($id);
+		$imagesModel = FoodShortsImages::find()->where(['food_short_id' => $id])->asArray()->all();
+        return $this->renderAjax('editfoodshortspopup', ['model' => $foodShortsModel,'id'=>$id,'imagesModel' => $imagesModel]);
+    }
+
+	public function actionEditFoodShort()
+	{
+		$model = new FoodShorts;
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+        $foodShortsArr = Yii::$app->request->post('FoodShorts');
+        $foodShortsUpdate = FoodShorts::findOne($_POST['FoodShorts']['ID']);
+		 
+        $foodShortsUpdate->attributes = \Yii::$app->request->post('FoodShorts');
+		
+        if($foodShortsUpdate->validate()){
+            $foodShortsUpdate->save();
+            Yii::$app->getSession()->setFlash('success', [
+                'title' => 'Food Shorts',
+                'text' => 'Food Shorts Edited Successfully',
+                'type' => 'success',
+                'timer' => 3000,
+                'showConfirmButton' => false
+            ]);
+        }
+        return $this->redirect('food-shorts');
+
+	}
 }
