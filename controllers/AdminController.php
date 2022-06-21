@@ -19,6 +19,7 @@ use \app\models\MerchantPaytypes;
 use \app\models\Articles;
 use \app\models\FoodShorts;
 use \app\models\FoodShortsImages;
+use \app\models\Client;
 use yii\db\Query;
 
 
@@ -1639,6 +1640,90 @@ $str.='</chart>';
             ]);
         }
         return $this->redirect('food-shorts');
+
+	}
+
+	public function actionClients()
+	{
+		$model = new Client;
+
+		$sdate = isset($_POST['sdate']) ? $_POST['sdate'] : date('Y-m-d'); 
+		$edate = isset($_POST['sdate']) ? $_POST['edate'] : date('Y-m-d');
+		
+		$sqlClients = 'select c.*,m.storename from client c inner join merchant m on c.merchant_id = m.ID where date(c.reg_date) between \''.$sdate.'\' and \''.$edate.'\' ';
+		$clients = Yii::$app->db->createCommand($sqlClients)->queryAll();
+
+		if ($model->load(Yii::$app->request->post()) ) {
+            $model->reg_date = date('Y-m-d H:i:s A');
+            $model->created_by = Yii::$app->user->identity->ID;
+            $model->updated_by = Yii::$app->user->identity->ID;
+            $model->updated_on = date('Y-m-d H:i:s A');
+
+			
+            if($model->validate()){
+                $model->save();
+
+				
+                Yii::$app->getSession()->setFlash('success', [
+                    'title' => 'Clients',
+                    'text' => 'Client Added Successfully',
+                    'type' => 'success',
+                    'timer' => 3000,
+                    'showConfirmButton' => false
+                ]);
+                return $this->redirect('clients');
+            }
+            else
+            {
+                echo "<pre>";print_r($model->getErrors());exit;
+            }
+        }
+        return $this->render("client",['clients' => $clients,'model' => $model, 'sdate' => $sdate, 'edate' => $edate]);
+	
+	}
+
+	public function actionDeleteClient()
+	{
+		$client = Client::findOne($_POST['id']);
+
+		if(!empty($client)) {
+			$client->delete();
+		}			
+		
+		return 1;
+	}
+
+	public function actionEditClientPopup()
+    {
+        extract($_POST);
+        $client = Client::findOne($id);
+        return $this->renderAjax('editclientpopup', ['model' => $client,'id'=>$id]);
+    }
+	public function actionEditClient()
+	{
+		$model = new Client;
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+        $clientArr = Yii::$app->request->post('Client');
+        $clientUpdate = Client::findOne($_POST['Client']['ID']);
+		 
+        $clientUpdate->attributes = \Yii::$app->request->post('Client');
+		
+        if($clientUpdate->validate()){
+            $clientUpdate->save();
+            Yii::$app->getSession()->setFlash('success', [
+                'title' => 'Clients',
+                'text' => 'Client Edited Successfully',
+                'type' => 'success',
+                'timer' => 3000,
+                'showConfirmButton' => false
+            ]);
+        }
+        return $this->redirect('clients');
+
 
 	}
 }
