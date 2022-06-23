@@ -91,7 +91,7 @@ $actionId = Yii::$app->controller->action->id;
 				<a href="<?php echo Url::to(['admin/articles']); ?>"> <i class="fa fa-newspaper-o"></i>Swing</a>
 			</li>
 			<li class="<?php if($actionId == 'articles' || $actionId == 'clients') { echo "active" ;} ?> ">
-				<a href="<?php echo Url::to(['admin/clients']); ?>"> <i class="fa fa-newspaper-o"></i>Clients</a>
+				<a href="<?php echo Url::to(['admin/clients']); ?>"> <i class="fa fa-newspaper-o"></i>Sales Revenue</a>
 			</li>			
             <li class="<?php if($actionId == 'permissions') { echo "active" ;} ?> ">
 				<a href="<?php echo Url::to(['admin/permissions']); ?>"> <i class="fa fa-bell"></i>Permissions</a>

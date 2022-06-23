@@ -33,7 +33,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header d-flex align-items-center pt-0 pb-0">
-                <h3 class="h4 col-md-6 pl-0 tab-title">Client List</h3>
+                <h3 class="h4 col-md-6 pl-0 tab-title">Sales Revenue</h3>
 				<div class="col-md-6 text-right pr-0">
 					<button type="button" class="btn btn-add btn-xs" id="myBtn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus mr-1"></i> Add Client</button>
 
