@@ -67,7 +67,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 
 
               <div class="card-body">
-			  <form class="form-horizontal" method="POST" id="article" action="articles">
+			  <form class="form-horizontal" method="POST" id="article" action="food-shorts">
                 <div class="row">
 			  <div class="col-md-3">
                   <div class="form-group row">
