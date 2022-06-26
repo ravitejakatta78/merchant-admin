@@ -33,7 +33,7 @@ class FoodShorts extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'content', 'status'], 'required'],
-            [['content'], 'string'],
+            [['content'], 'string', 'max' => 350],
             [['status', 'created_by', 'updated_by'], 'integer'],
             [['reg_date', 'updated_on'], 'safe'],
             [['title'], 'string', 'max' => 255],
