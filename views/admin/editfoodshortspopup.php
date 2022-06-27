@@ -35,7 +35,7 @@ use yii\helpers\Url;
 						<div class="form-group row">
 							<label class="control-label col-md-4">Content</label>
 							<div class="col-md-8">
-												<?= $form->field($model, 'content')->textarea(['class' => 'form-control'])->label(false); ?>
+												<?= $form->field($model, 'content')->textarea(['class' => 'form-control content-update', "maxlength"=> "355", "placeholder" => "Please Enter Not More Than 355 Characters",'onkeyup' => 'contentUpdateCheck()'])->label(false); ?>
 							</div>
 						</div>
 					</div>

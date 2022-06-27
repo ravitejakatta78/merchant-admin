@@ -184,7 +184,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 							<div class="form-group row">
 	   							<label class="control-label col-md-4">Content</label>
 								<div class="col-md-8">
-											<?= $form->field($model, 'content')->textarea(['class' => 'form-control'])->label(false); ?>
+											<?= $form->field($model, 'content')->textarea(['class' => 'form-control content', "maxlength"=> "355", "placeholder" => "Please Enter Not More Than 355 Characters"])->label(false); ?>
 								</div>
 	   						</div>
 						</div>
@@ -316,4 +316,24 @@ $('#tblAddRow').on('click', 'tr a', function(e) {
         $(this).parents('tr').remove();
     }
 });
+
+$(".content").keyup(function(){
+	if($(".content").val().length == 355) {
+		swal(
+			'Warning!',
+			'355 Characters are added to the content',
+			'warning'
+		);
+	}
+});
+
+function contentUpdateCheck(){
+	if($(".content-update").val().length == 355) {
+		swal(
+			'Warning!',
+			'355 Characters are added to the content',
+			'warning'
+		);
+	}
+}
 </script>
