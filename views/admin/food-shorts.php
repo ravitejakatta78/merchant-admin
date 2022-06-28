@@ -114,6 +114,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                       	<tr>
 							<th>S.No</th>
 							<th>Title</th>
+							<th>Date & Time</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -125,6 +126,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                             <tr>
 								<td><?= $x; ?></td>
 								<td><?= $foodShort['title']; ?></td>
+								<td><?= date('d-M-Y h:i A',strtotime($foodShort['reg_date'])); ?></td>
 								<td>
 									<label class="switch">
 										  <input type="checkbox" <?php if($foodShort['status']=='1'){ echo 'checked';}?> onChange="changestatus('foodShorts',<?php echo $foodShort['ID'];?>);">

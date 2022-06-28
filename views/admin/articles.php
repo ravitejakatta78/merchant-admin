@@ -115,6 +115,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 							<th>S.No</th>
 							<th>Title</th>
 							<th>Image</th>
+							<th>Date & Time</th>
 							<th>Status</th>
 							<th>Action</th>
 						</tr>
@@ -127,7 +128,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 								<td><?= $x; ?></td>
 								<td><?= $article['title']; ?></td>
 								<td><img style="width:100px;height:100px" src="<?= Yii::$app->request->baseUrl.'/../../merchant_images/articles/'. $article['image'];?>" ></td>
-								
+								<td><?= date('d-M-Y h:i A',strtotime($article['reg_date'])); ?></td>
 								<td>
 									<label class="switch">
 										  <input type="checkbox" <?php if($article['status']=='1'){ echo 'checked';}?> onChange="changestatus('articles',<?php echo $article['ID'];?>);">
