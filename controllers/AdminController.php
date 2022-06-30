@@ -1722,8 +1722,15 @@ $str.='</chart>';
                 'showConfirmButton' => false
             ]);
         }
+
         return $this->redirect('clients');
+	}
 
+	public function actionPilotDemoRequests()
+	{
+		$sql = 'select * from pilot_demo_requests order by ID desc';
+		$res = Yii::$app->db->createCommand($sql)->queryAll();
 
+		return $this->render('pilot_demo_requests', ['res' => $res]);
 	}
 }
