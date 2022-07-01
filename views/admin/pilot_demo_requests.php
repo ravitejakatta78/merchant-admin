@@ -9,10 +9,40 @@ $actionId = Yii::$app->controller->action->id;
 
 ?>
 <script src="<?= Yii::$app->request->baseUrl.'/js/jquery.table2excel.js'?>"></script>
+<style>
+ul.resp-tabs-list, p {
+  margin: 0;
+  padding: 0;
+}
+.resp-tabs-list li {
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 15px 15px;
+  margin: 0 4px 0 0;
+      margin-bottom: 0px;
+  list-style: none;
+  cursor: pointer;
+  float: left;
+background:#ffcf95;
+border-radius:4px 4px 0 0;
+color:#333;
+}
+.resp-tab-active {
+  padding: 12px 14px 14px !important;
+  border-top: 4px solid #fe2503 !important;
+  border-bottom: 0 #fff solid !important;
+background:#FD8B02 !important;
+color:#fff !important;
 
+}
+
+	</style>
 <header class="page-header">
           </header>
           <section>
+		  <?= \Yii::$app->view->renderFile('@app/views/admin/_demo_requests.php',['actionId'=>$actionId]); ?>
+
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header d-flex align-items-center pt-0 pb-0">
