@@ -86,7 +86,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                                                     <td class="icons">
                                                         <a onclick="deletepaytypes('<?= $merchantPay['ID'];?>')"><span class="fa fa-trash"></span>
 													</a>
-													<a onclick="editpaytype('<?= $merchantPay['ID'];?>')"><span class="fa fa-eye"></span>
+													<a onclick="editpaytype('<?= $merchantPay['ID'];?>')"><span class="fa fa-pencil"></span>
 													</a>
 												</td>
 										</tr>			
