@@ -15,6 +15,8 @@ class MyConst
 	const _INACTIVE = 'INACTIVE';
 	const TYPE_ACTIVE = '1';
 	const TYPE_INACTIVE = '2';
+	
+	const _SERVICE_TYPES = ['1' => 'Dine In', '2' => 'Parcels','3' => 'Self-Pickup','4' => 'Delivery','5' => 'Table Reservation'];
 }
 
 ?>

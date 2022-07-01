@@ -51,6 +51,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 						<th>Payment Type</th>
 					<!--	<th>Merchant Id</th>
 						<th>Merchant Key</th> -->
+						<th>Service Type</th>
 						<th>Status</th>
 						<th>Action</th>
                       </tr>
@@ -78,6 +79,7 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 <!--                                                    <td>-->
 <!--                                                        --><?php //echo $merchantPay['merchantkey']; ?>
 <!--                                                    </td>-->
+												    <td><?= $merchantPay['service_types']; ?></td>
                                                     <td><label class="switch">
             										  <input type="checkbox" <?php if($merchantPay['status']=='1'){ echo 'checked';}?> onChange="changestatus('merchant_paytypes',<?php echo $merchantPay['ID'];?>);">
             										  <span class="slider round"></span>
@@ -170,11 +172,11 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 	   
 
 	   <select class="test" name="group[]" multiple="multiple" id="merchantpaytypes-servicetype" class="form-control select2-hidden-accessible">
-			<option value="1">Dine In</option>
-			<option value="2">Parcels</option>
-			<option value="3">Self-Pickup</option>
-			<option value="4">Delivery</option>
-			<option value="5">Table Reservation</option> 
+			<?php foreach(\app\helpers\MyConst::_SERVICE_TYPES as $key => $value) { ?>
+				<option value="<?= $key; ?>"><?= $value; ?></option>	
+			<?php } ?>	
+	  	 
+			
 			
 		</select>
 	   	<div id="err_servicetype" style="color:red;display:none">Service Type is required</div>

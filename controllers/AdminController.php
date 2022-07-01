@@ -811,7 +811,15 @@ else if($tablename == 'coupon')
 		}else{
 			return $this->redirect('merchants');
 		}
-		$sqlmerchantPay = 'SELECT mp.ID,storename,paymenttype,merchantid,merchantkey,mp.status  FROM merchant_paytypes mp inner join merchant m on mp.merchant_id = m.ID
+		$sqlmerchantPay = 'SELECT mp.ID,storename,paymenttype,merchantid,merchantkey,mp.status,service_types  FROM merchant_paytypes mp 
+		inner join merchant m on mp.merchant_id = m.ID
+		left join (select paytype_id,GROUP_CONCAT(case when service_type_id = 1 then \''.'Dine In'.'\'
+		when service_type_id = 2 then \''.'Parcels'.'\'
+		when service_type_id = 3 then \''.'Self-Pickup'.'\'
+		when service_type_id = 4 then \''.'Delivery'.'\'
+		else \''.'Table Reservation'.'\' end
+		 ) service_types from merchant_paytype_services group by  merchant_id,paytype_id) st
+		on st.paytype_id = mp.ID 
 		where merchant_id = \''.$merchantId.'\' order by mp.ID desc';
 		$merchantPay = Yii::$app->db->createCommand($sqlmerchantPay)->queryAll();
 		$model = new MerchantPaytypes;

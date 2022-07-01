@@ -62,12 +62,11 @@ $paytypearray = array('1'=>'Cash On Dine','2'=>'Online Payment'
 	   
 
 	   <select class="test" name="updategroup[]" multiple="multiple" id="merchantpaytypes-update-servicetype">
-			<option value="1" <?php if(in_array('1', $serviceTypeDetailsArray)) { echo 'selected'; } ?>>Dine In</option>
-			<option value="2" <?php if(in_array('2', $serviceTypeDetailsArray)) { echo 'selected'; } ?>>Parcels</option>
-			<option value="3" <?php if(in_array('3', $serviceTypeDetailsArray)) { echo 'selected'; } ?>>Self-Pickup</option>
-			<option value="4" <?php if(in_array('4', $serviceTypeDetailsArray)) { echo 'selected'; } ?>>Delivery</option>
-			<option value="5" <?php if(in_array('5', $serviceTypeDetailsArray)) { echo 'selected'; } ?>>Table Reservation</option> 
-			
+	  		<?php foreach(\app\helpers\MyConst::_SERVICE_TYPES as $key => $value) { ?>
+				<option value="<?= $key; ?>" <?php if(in_array($key , $serviceTypeDetailsArray)) { echo 'selected'; } ?>><?= $value; ?></option>
+	
+			<?php } ?>			
+	  
 		</select>
 	   	<div id="err_update_servicetype" style="color:red;display:none">Service Type is required</div>
 	   
