@@ -59,7 +59,7 @@ use yii\helpers\Html;
 (function($) {
     $(function() {
         window.fs_test = $('.test').fSelect();
-    });
+    }); 
 })(jQuery);
 function deleteGroupMerchant(id){
 //	var res = confirm('Are you sure want to delete??')

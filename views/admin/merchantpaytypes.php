@@ -6,6 +6,11 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use aryelds\sweetalert\SweetAlert;
 ?>
+<style>
+.selection > .select2-selection--multiple {
+	display:none; 	
+}
+</style>
 <header class="page-header">
                     <?php 
 foreach (Yii::$app->session->getAllFlashes() as $message) {
@@ -52,7 +57,8 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                     </thead>
 		    <tbody>
 								<?php $x=1; 
-								$paytypearray = array('1'=>'Cash','2'=>'Online','3'=>'UPI','4'=>'Card');
+								$paytypearray = array('1'=>'Cash On Dine','2'=>'Online Payment'
+								,'3'=>'UPI Scanner','4'=>'Card Swipe');
 								
 									foreach($merchantPay as $merchantPay){
 								?>
@@ -79,7 +85,10 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 									            </td>
                                                     <td class="icons">
                                                         <a onclick="deletepaytypes('<?= $merchantPay['ID'];?>')"><span class="fa fa-trash"></span>
-													</a></td>
+													</a>
+													<a onclick="editpaytype('<?= $merchantPay['ID'];?>')"><span class="fa fa-eye"></span>
+													</a>
+												</td>
 										</tr>			
                                                 	<?php $x++; }?>
                        </tbody>
@@ -154,6 +163,24 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 
 	   
 </div>
+		<div class="col-md-6">
+		<div class="form-group row">
+	   <label class="control-label col-md-4">Service Type</label>
+	   <div class="col-md-8">
+	   
+
+	   <select class="test" name="group[]" multiple="multiple" id="merchantpaytypes-servicetype" class="form-control select2-hidden-accessible">
+			<option value="1">Dine In</option>
+			<option value="2">Parcels</option>
+			<option value="3">Self-Pickup</option>
+			<option value="4">Delivery</option>
+			<option value="5">Table Reservation</option> 
+			
+		</select>
+	   	<div id="err_servicetype" style="color:red;display:none">Service Type is required</div>
+	   
+	   </div></div>
+	</div>
 
 	   </div>
 	   </div>
@@ -214,6 +241,16 @@ function validateform(){
 	else{
 				$("#err_paymenttype").hide();		
 	}	
+
+	var servicetype = $("#merchantpaytypes-servicetype").val();
+	
+	if(servicetype == ''){
+				$("#err_servicetype").show();
+					err = err+1;
+	}
+	else{
+				$("#err_servicetype").hide();		
+	}
 	
 	
 	
@@ -254,4 +291,23 @@ function deletepaytypes(id) {
 					}
 				})
 		}
+
+		(function($) {
+    $(function() {
+        window.fs_test = $('.test').fSelect();
+		$('.select2-selection--multiple').hide();
+    }); 
+})(jQuery);
+
+
+function editpaytype(id){
+var request = $.ajax({
+  url: "editpaytypespopup",
+  type: "POST",
+  data: {id : id},
+}).done(function(msg) {
+	$('#paytypesbody').html(msg);
+	$('#updatepaytypes').modal('show');
+});
+}
 </script>

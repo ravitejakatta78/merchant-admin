@@ -822,6 +822,18 @@ else if($tablename == 'coupon')
 		$model->reg_date = date('Y-m-d h:i:s');
 		
 		if($model->validate()){
+			$model->save();
+			if(!empty($_POST['group'])){
+				for($i=0;$i<count($_POST['group']);$i++)
+				{
+					$data[] = [$merchantId,$model->ID,$_POST['group'][$i],date('Y-m-d H:i:s A')];
+				}
+				Yii::$app->db
+				->createCommand()
+				->batchInsert('merchant_paytype_services', ['merchant_id','paytype_id','service_type_id', 'reg_date'],$data)
+				->execute();	
+			}
+
 		Yii::$app->getSession()->setFlash('success', [
         'title' => 'Payment Method',
 		'text' => 'Payment Method Created Successfully',
@@ -829,7 +841,7 @@ else if($tablename == 'coupon')
         'timer' => 3000,
         'showConfirmButton' => false
     ]);
-			$model->save();
+			
 
 //		return	$this->redirect('paydetails');
 		return $this->redirect(['admin/paydetails','merchantId'=>$model->merchant_id]);
@@ -846,7 +858,9 @@ else if($tablename == 'coupon')
 	{
 		extract($_POST);
 		$paytypesModel = MerchantPaytypes::findOne($id);
-		return $this->renderAjax('editpaytypespopup', ['model' => $paytypesModel,'id'=>$id]);
+		$serviceTypeDetails = \app\models\MerchantPaytypeServices::find()->where(['paytype_id' => $id])->asArray()->all();
+		$serviceTypeDetailsArray = array_column($serviceTypeDetails,'service_type_id');
+		return $this->renderAjax('editpaytypespopup', ['model' => $paytypesModel,'id'=>$id, 'serviceTypeDetailsArray' => $serviceTypeDetailsArray]);
 	}
 	public function actionUpdatepaymentmethod()
 	{
@@ -857,13 +871,23 @@ else if($tablename == 'coupon')
 			return ActiveForm::validate($model);
 		}
 		$merchantPaymentArr = Yii::$app->request->post('MerchantPaytypes');
-		$merchantPaymentUpdate = MerchantPaytypes::findOne($_POST['MerchantPaytypes']['ID']);
+		$merchantPaymentUpdate = MerchantPaytypes::findOne($_POST['MerchantPaytypes']['paymenttype']);
 
-		$merchantPaymentUpdate->attributes = \Yii::$app->request->post('MerchantPaytypes');
 			
 			 
-		if($merchantPaymentUpdate->validate()){
-			$merchantPaymentUpdate->save();
+		if(!empty($merchantPaymentUpdate)){
+			if(!empty($_POST['updategroup'])){
+				$sqlDelete = 'delete from merchant_paytype_services where paytype_id = \''.$_POST['MerchantPaytypes']['paymenttype'].'\'';
+				$resDelete = Yii::$app->db->createCommand($sqlDelete)->execute();
+				for($i=0;$i<count($_POST['updategroup']);$i++)
+				{
+					$data[] = [$_POST['MerchantPaytypes']['merchantId'],$_POST['MerchantPaytypes']['paymenttype'],$_POST['updategroup'][$i],date('Y-m-d H:i:s A')];
+				}
+				Yii::$app->db
+				->createCommand()
+				->batchInsert('merchant_paytype_services', ['merchant_id','paytype_id','service_type_id', 'reg_date'],$data)
+				->execute();	
+			}
 		}
 		Yii::$app->getSession()->setFlash('success', [
         'title' => 'Payment Method',
@@ -878,6 +902,10 @@ else if($tablename == 'coupon')
 		extract($_POST);
 		$paydetails = \app\models\MerchantPaytypes::findOne($id);
 		$paydetails->delete();
+
+		$sqlDelete = 'delete from merchant_paytype_services where paytype_id = \''.$id.'\'';
+		$resDelete = Yii::$app->db->createCommand($sqlDelete)->execute();
+
 		return $this->redirect(['admin/paydetails','merchantId'=>$paydetails['merchant_id']]);
 		
 	}
