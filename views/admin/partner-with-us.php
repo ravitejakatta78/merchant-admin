@@ -31,6 +31,7 @@ $businessType = ['1' => 'Investment', '2' => 'Delivery and Self-Pickup', '3' => 
                     <thead>
                       <tr>
                         <th>S No</th>
+                        <th>Date & Time</th>
                                     <th>Business Type</th>
                                     <th>Business Name</th>
                                     <th>Contact Person</th>
@@ -45,6 +46,7 @@ $businessType = ['1' => 'Investment', '2' => 'Delivery and Self-Pickup', '3' => 
 								?>
                                   <tr>
                                  	<td><?php echo $x;?></td>
+                                  <td><?= date('d-M-Y h:i A' ,strtotime($res['reg_date'])); ?>
                                  	<td><?= $businessType[$res['business_type']]; ?></td>
 									 <td><?= $res['business_name']; ?></td>
 									 <td><?= $res['contact_person']; ?></td>
