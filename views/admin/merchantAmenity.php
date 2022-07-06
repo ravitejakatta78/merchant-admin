@@ -60,12 +60,12 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
                                 <td><?= $x+1; ?></td>
                                 <td><?= $value; ?></td>
                                  <td><label class="switch">
-										  <input type="checkbox" <?php if($resMerchantAmenity[$key]=='1'){ echo 'checked';}?> onChange="changeAmenityStatus(<?php echo $key;?>,'<?= $merchantId; ?>');">
+										  <input type="checkbox" <?php if(@$resMerchantAmenity[$key]=='1'){ echo 'checked';}?> onChange="changeAmenityStatus(<?php echo $key;?>,'<?= $merchantId; ?>');">
 										  <span class="slider round"></span>
 										</label>
 								</td>
 								<td><label class="switch">
-										  <input type="checkbox" <?php if($resMerchantVisibilityAmenity[$key]=='1'){ echo 'checked';}?> onChange="changeAmenityVisibilityStatus(<?php echo $key;?>,'<?= $merchantId; ?>');">
+										  <input type="checkbox" <?php if(@$resMerchantVisibilityAmenity[$key]=='1'){ echo 'checked';}?> onChange="changeAmenityVisibilityStatus(<?php echo $key;?>,'<?= $merchantId; ?>');">
 										  <span class="slider round"></span>
 										</label>
 								</td>
