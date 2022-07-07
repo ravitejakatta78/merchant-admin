@@ -348,6 +348,6 @@ $(document).on("click", "i[name=deleterow]", function(e) {
         alert("Can't remove all row!");
     } else {
         $(this).parents('tr').remove();
-    }
+	}
 });
 </script>

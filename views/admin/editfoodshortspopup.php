@@ -55,7 +55,7 @@ use yii\helpers\Url;
 				<?php } ?>
 			</div>
 
-			<table id="tblAddRows" class="mt-3 table table-bordered table-striped">
+			<table id="tblAddRows" class="mt-3 table table-bordered table-striped"  <?php if(count($imagesModel) >= 9) { ?> style="display:none" <?php } ?>>
     					<thead>
 							<tr>
 								<th>Image</th>
@@ -77,9 +77,8 @@ use yii\helpers\Url;
 		</div>
 		
    		<div class="modal-footer">
-		   <?php if(count($imagesModel) < 9) { ?>
-			<a onclick="addrow()" class="btn btn-add">Add Row</a>
-		   <?php } ?>	
+
+			<a onclick="addrow()" id="addRowUpdate" class="btn btn-add" <?php if(count($imagesModel) >= 9) { ?> style="display:none" <?php } ?>>Add Row</a>
 		<?= Html::submitButton('Edit Food Short', ['class'=> 'btn btn-add']); ?>
       	</div> 
 	<?php ActiveForm::end() ?>
@@ -100,6 +99,13 @@ function deleteFoodShortImage(imageId,image) {
 						  data: {id : imageId,image:image},
 						}).done(function(msg) {
 							$("#image_"+msg).remove();
+							var numPrevImages = $('.images_display').length;
+							var lenRow = $('#tblAddRows tbody tr').length;
+							var prsntRows = (numPrevImages + lenRow);	
+							if(prsntRows <= 9) {
+								$("#tblAddRows").show();
+								$("#addRowUpdate").show();
+							}
 						});
 					}
 				});
