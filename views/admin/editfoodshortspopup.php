@@ -42,11 +42,16 @@ use yii\helpers\Url;
 			</div>
 			<div class="row">
 				<?php for($i=0; $i < count($imagesModel); $i++ ) { ?> 
-				<div class="col-md-4">
+				<div class="col-md-4" id="image_<?= $imagesModel[$i]['ID']; ?>">
+				<div>
 				<a href="<?= Yii::$app->request->baseUrl.'/../../merchant_images/food_shorts/'.$imagesModel[$i]['image']; ?>" target="_blank">
 					<img src="<?= Yii::$app->request->baseUrl.'/../../merchant_images/food_shorts/'.$imagesModel[$i]['image']; ?>" style="width=50px;height:100px" />
 				</a>
 				</div>
+				<div>
+				<a class="btn btn-add" onclick="deleteFoodShortImage('<?= $imagesModel[$i]['ID']; ?>','<?= $imagesModel[$i]['image']; ?>')">Delete</a>
+				</div>	
+			</div>
 				<?php } ?>
 			</div>
 		</div>
@@ -57,3 +62,24 @@ use yii\helpers\Url;
 	<?php ActiveForm::end() ?>
         
         
+	<script>
+function deleteFoodShortImage(imageId,image) {
+	swal({
+				title: "Are you sure want to delete??", 
+				type: "warning",
+				showCancelButton: true
+		    })
+		    	.then((result) => {
+					if (result.value) {
+					    var request = $.ajax({
+						  url: "delete-food-short-image",
+						  type: "POST",
+						  data: {id : imageId,image:image},
+						}).done(function(msg) {
+							$("#image_"+msg).hide();
+						});
+					}
+				});
+
+}
+		</script>

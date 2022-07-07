@@ -1769,4 +1769,16 @@ $str.='</chart>';
 
 		return $this->render('pilot_demo_requests', ['res' => $res]);
 	}
+
+	public function actionDeleteFoodShortImage() 
+	{
+		extract($_POST);
+		$model = FoodShortsImages::findOne($id);
+		$imagePath =  '../../'.Url::to(['../../merchant_images/food_shorts/'. $image]);
+		if(file_exists($imagePath)){
+			unlink($imagePath);	
+		}
+		$model->delete();
+		return $id;
+	}
 }
