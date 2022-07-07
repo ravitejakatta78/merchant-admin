@@ -8,7 +8,7 @@ use yii\helpers\Url;
 				<?php	$form = ActiveForm::begin([
     		'id' => 'edit-article-form',
 			'action'=>'edit-food-short',
-		'options' => ['class' => 'form-horizontal','wrapper' => 'col-xs-12',],
+		'options' => ['class' => 'form-horizontal','wrapper' => 'col-xs-12','enctype'=> 'multipart/form-data'],
         	'layout' => 'horizontal',
 			 'fieldConfig' => [
         'horizontalCssClasses' => [
@@ -42,7 +42,7 @@ use yii\helpers\Url;
 			</div>
 			<div class="row">
 				<?php for($i=0; $i < count($imagesModel); $i++ ) { ?> 
-				<div class="col-md-4" id="image_<?= $imagesModel[$i]['ID']; ?>">
+				<div class="col-md-4 images_display" id="image_<?= $imagesModel[$i]['ID']; ?>" >
 				<div>
 				<a href="<?= Yii::$app->request->baseUrl.'/../../merchant_images/food_shorts/'.$imagesModel[$i]['image']; ?>" target="_blank">
 					<img src="<?= Yii::$app->request->baseUrl.'/../../merchant_images/food_shorts/'.$imagesModel[$i]['image']; ?>" style="width=50px;height:100px" />
@@ -54,10 +54,33 @@ use yii\helpers\Url;
 			</div>
 				<?php } ?>
 			</div>
+
+			<table id="tblAddRows" class="mt-3 table table-bordered table-striped">
+    					<thead>
+							<tr>
+								<th>Image</th>
+								<th>Action</th>
+							</tr>
+    					</thead>
+    					<tbody>
+							<tr>
+
+								
+								<td>
+									<input type="file" name="updateImage[]" class="form-control">
+								</td>
+								
+							</tr>
+						
+						</tbody>
+					</table>
 		</div>
 		
    		<div class="modal-footer">
-			<?= Html::submitButton('Edit Food Short', ['class'=> 'btn btn-add']); ?>
+		   <?php if(count($imagesModel) < 9) { ?>
+			<a onclick="addrow()" class="btn btn-add">Add Row</a>
+		   <?php } ?>	
+		<?= Html::submitButton('Edit Food Short', ['class'=> 'btn btn-add']); ?>
       	</div> 
 	<?php ActiveForm::end() ?>
         
@@ -76,10 +99,40 @@ function deleteFoodShortImage(imageId,image) {
 						  type: "POST",
 						  data: {id : imageId,image:image},
 						}).done(function(msg) {
-							$("#image_"+msg).hide();
+							$("#image_"+msg).remove();
 						});
 					}
 				});
 
+}
+
+$(document).ready(function(){
+// Add button Delete in row
+$('#tblAddRows tbody tr')
+    .find('td')
+    //.append('<input type="button" value="Delete" class="del"/>')
+    .parent() //traversing to 'tr' Element
+    .append('<td><a href="#" class="delrow" ><i class="fa fa-trash border-red text-red deleterow" name="deleterow" ></i></a></td>');
+	
+
+	
+});
+
+function addrow() {
+	var numPrevImages = $('.images_display').length;
+	var lenRow = $('#tblAddRows tbody tr').length;
+	var prsntRows = (numPrevImages + lenRow);
+	if(prsntRows >= 9) {
+		swal(
+			'Warning!',
+			'You Cannot Add More Than 9 Images',
+			'warning'
+		);
+		return false;
+	} else {
+	    var lastRow = $('#tblAddRows tbody tr:last').html();
+    	$('#tblAddRows tbody').append('<tr>' + lastRow + '</tr>');
+    	$('#tblAddRows tbody tr:last input').val('');
+	}
 }
 		</script>

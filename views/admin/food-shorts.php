@@ -338,4 +338,16 @@ function contentUpdateCheck(){
 		);
 	}
 }
+
+
+
+$(document).on("click", "i[name=deleterow]", function(e) {
+	 var lenRow = $('#tblAddRows tbody tr').length;
+    e.preventDefault();
+    if (lenRow == 1 || lenRow <= 1) {
+        alert("Can't remove all row!");
+    } else {
+        $(this).parents('tr').remove();
+    }
+});
 </script>

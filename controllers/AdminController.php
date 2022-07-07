@@ -1667,6 +1667,35 @@ $str.='</chart>';
 		
         if($foodShortsUpdate->validate()){
             $foodShortsUpdate->save();
+
+			$imageArray = $_FILES['updateImage']['name'];
+				if(!empty($imageArray))
+				{
+
+					for($i=0;$i<count($imageArray);$i++)
+					{
+						$tmp_name = $_FILES['updateImage']['tmp_name'][$i];
+						$pic_extension = pathinfo($_FILES['updateImage']['name'][$i], PATHINFO_EXTENSION);
+
+						$imagename = strtolower(base_convert(time(), 10, 36) . '_' . md5(microtime())).'.'.$pic_extension;
+						$path = '../../merchant_images/food_shorts/';
+						if (!is_dir($path)) {
+							mkdir($path, 0777, true);
+						}
+						move_uploaded_file($tmp_name,$path.'/'.$imagename);
+						
+						$data[] = [$_POST['FoodShorts']['ID'],$imagename];
+						
+					}
+
+					if(!empty($data)) {
+						Yii::$app->db
+						->createCommand()
+						->batchInsert('food_shorts_images', ['food_short_id','image'],$data)
+						->execute();
+					}
+				}
+
             Yii::$app->getSession()->setFlash('success', [
                 'title' => 'Food Shorts',
                 'text' => 'Food Shorts Edited Successfully',
@@ -1781,4 +1810,6 @@ $str.='</chart>';
 		$model->delete();
 		return $id;
 	}
+
+	
 }
