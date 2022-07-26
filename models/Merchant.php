@@ -45,6 +45,7 @@ use Yii;
  * @property int $merchant_bill_copy 1=Yes,2=No
  * @property int $cancel_with_otp 1=Yes,2=No
  * @property int $reverse_buzz 1=Enabled,2=Disabled
+ * @property int $multi_kot_config 1=Enabled,2=Disabled
  */
 class Merchant extends \yii\db\ActiveRecord
 {
@@ -68,7 +69,7 @@ class Merchant extends \yii\db\ActiveRecord
             [['password', 'mobile', 'storetype', 'storename', 'address', 'state', 'city', 'location', 'logo', 'latitude'
 			, 'longitude', 'qrlogo', 'coverpic', 'status', 'recommend', 'verify', 'description', 'servingtype', 'plan', 'useraccess', 'gst_number'], 'string'],
             [['otp','ID','owner_type','open_time','close_time','table_res_avail','table_occupy_status', 'popularity', 'cancel_decision'
-            , 'merchant_bill_copy', 'cancel_with_otp', 'reverse_buzz'], 'integer'],
+            , 'merchant_bill_copy', 'cancel_with_otp', 'reverse_buzz', 'multi_kot_config'], 'integer'],
             [['scan_range','tip', 'approx_cost'], 'number'],
             [['mod_date','food_serve_type','subscription_date','allocated_msgs','used_msgs'], 'safe'],
             [['user_id', 'unique_id', 'name', 'email'], 'string', 'max' => 50],
@@ -134,7 +135,8 @@ class Merchant extends \yii\db\ActiveRecord
             'gst_number' => 'GST Number',
             'merchant_bill_copy' => 'Merchant Bill Copy',
             'cancel_with_otp' => 'Cancel With OTP',
-            'reverse_buzz' => 'Reverse uzz'
+            'reverse_buzz' => 'Reverse uzz',
+            'multi_kot_config' => 'Multi Kot Config'
         ];
     }
 	public function updatemerchantemail($attribute, $params)

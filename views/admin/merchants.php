@@ -238,6 +238,13 @@ foreach (Yii::$app->session->getAllFlashes() as $message) {
 				  ,['prompt'=>'Select'])->label(false); ?>
 	   </div></div>
 
+	<div class="form-group row">
+	   <label class="control-label col-md-4">Multi KOT</label>
+	 <div class="col-md-8">
+			       <?= $form->field($model, 'multi_kot_config')
+				  ->dropdownlist(['1'=>'Enable','2'=>'Disable']
+				  ,['prompt'=>'Select'])->label(false); ?>
+	   </div></div>   
     </div>
 <div class="col-md-6">
 	   <div class="form-group row">
